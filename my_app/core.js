@@ -45,8 +45,8 @@ function main() {
       // moves over the view, leaves the view, or is pressed.
       //
       // Note: since Blossom is still pre-beta, we'll cheat and manipulate 
-      // the `document` object directly to show a cursor.  In a future
-      //  release of Blossom, this will be replace by a cross-platform 
+      // the `document` object directly to show a cursor.  In a future 
+      // release of Blossom, this will be replace by a cross-platform 
       // function that works outside the browser.
       mouseDown:    function(evt) { alert("You clicked the green view!"); },
       mouseEntered: function(evt) { document.body.style.cursor = 'pointer'; },
