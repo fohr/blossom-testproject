@@ -1,0 +1,17 @@
+{
+  "name":         "Blossome Test Project",
+  "description":  "A Very basic app in blossom, with docs.",
+  "keywords":     ["documentation", "docs", "sproutcore", "blossom"],
+  "author":       "Erich Ocean",
+  "version":      "0.0.1",
+  "licenses": [{
+    "type":       "MIT",
+    "url":        "http://opensource.org/licenses/mit-license.php"
+  }],
+  "engines": {
+    "node":       ">=0.6.0"
+  },
+  "dependencies": {
+    "blossom" :       "0.5.1"
+  }
+}
