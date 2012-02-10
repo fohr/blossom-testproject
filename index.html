@@ -1,85 +1,50 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset='utf-8'>
+<!DOCTYPE html>  <html> <head>   <title>core.js</title>   <meta http-equiv="content-type" content="text/html; charset=UTF-8">   <link rel="stylesheet" media="all" href="docco.css" /> </head> <body>   <div id="container">     <div id="background"></div>          <table cellpadding="0" cellspacing="0">       <thead>         <tr>           <th class="docs">             <h1>               core.js             </h1>           </th>           <th class="code">           </th>         </tr>       </thead>       <tbody>                               <tr id="section-1">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-1">&#182;</a>               </div>               <p>Welcome to the Blossom test project. This shows how to get a basic Blossom 
+application up and running with a minimum of code.  Please be sure to read 
+the README so that Blossom is installed correctly via <code>npm</code>, the Node 
+Package Manager.  Now, on to the code!</p>             </td>             <td class="code">               <div class="highlight"><pre></pre></div>             </td>           </tr>                               <tr id="section-2">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-2">&#182;</a>               </div>               <p>Every Blossom app needs exactly one instance of <code>SC.Application</code>.  You can 
+either use <code>SC.Application</code> as-is, like we do here, or you can customize 
+or even subclass it as needed.</p>
 
-  <title>fohr/blossom-testproject @ GitHub</title>
+<p>In general, you probably <em>don't</em> want to use <code>SC.app</code> as the namespace for 
+your app's classes and objects. Instead, do something like:</p>
 
-  <style type="text/css">
-    body {
-      margin-top: 1.0em;
-      background-color: #ffffff;
-      font-family: Helvetica, Arial, FreeSans, san-serif;
-      color: #000000;
-    }
-    #container {
-      margin: 0 auto;
-      width: 700px;
-    }
-    h1 { font-size: 3.8em; color: #000000; margin-bottom: 3px; }
-    h1 .small { font-size: 0.4em; }
-    h1 a { text-decoration: none }
-    h2 { font-size: 1.5em; color: #000000; }
-    h3 { text-align: center; color: #000000; }
-    a { color: #000000; }
-    .description { font-size: 1.2em; margin-bottom: 30px; margin-top: 30px; font-style: italic;}
-    .download { float: right; }
-    pre { background: #000; color: #fff; padding: 15px;}
-    hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
-    .footer { text-align:center; padding-top:30px; font-style: italic; }
-  </style>
-</head>
+<pre><code>var NS = global.NS = SC.Object.create(...); // Make `NS` our namespace.
+NS.Record = SC.Record.extend(...);
+</code></pre>             </td>             <td class="code">               <div class="highlight"><pre><span class="nx">SC</span><span class="p">.</span><span class="nx">Application</span><span class="p">.</span><span class="nx">create</span><span class="p">();</span> <span class="c1">// It automatically assigns itself to `SC.app`.</span></pre></div>             </td>           </tr>                               <tr id="section-3">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-3">&#182;</a>               </div>               <p>This function is called by Blossom when your app is ready to begin running.</p>             </td>             <td class="code">               <div class="highlight"><pre><span class="kd">function</span> <span class="nx">main</span><span class="p">()</span> <span class="p">{</span></pre></div>             </td>           </tr>                               <tr id="section-4">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-4">&#182;</a>               </div>               <p>Create a view surface for our user interface, with <code>contentView</code> set to
+a custom subclass of <code>SC.View</code> that draws itself green.  In Blossom, 
+"surfaces" are what are visible in the viewport, so you need to host a
+view tree in a surface, in this case, an <code>SC.ViewSurface</code>, in order to 
+actually display the view tree and receive events.</p>             </td>             <td class="code">               <div class="highlight"><pre>  <span class="kd">var</span> <span class="nx">ui</span> <span class="o">=</span> <span class="nx">SC</span><span class="p">.</span><span class="nx">ViewSurface</span><span class="p">.</span><span class="nx">create</span><span class="p">({</span></pre></div>             </td>           </tr>                               <tr id="section-5">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-5">&#182;</a>               </div>               <p>This configures the location and size of our surface within the 
+viewport managed by <code>SC.Application</code>.  Here, we're telling Blossom to 
+fill the entire viewport with the surface.</p>             </td>             <td class="code">               <div class="highlight"><pre>    <span class="nx">layout</span><span class="o">:</span> <span class="p">{</span> <span class="nx">top</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">left</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">right</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">bottom</span><span class="o">:</span> <span class="mi">0</span> <span class="p">},</span></pre></div>             </td>           </tr>                               <tr id="section-6">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-6">&#182;</a>               </div>               <p><code>SC.ViewSurface</code> hosts an <code>SC.View</code> tree, with <code>contentView</code> as the 
+root view in the tree.  To add additional views, make them 
+<code>childViews</code> of the <code>contentView</code>.</p>             </td>             <td class="code">               <div class="highlight"><pre>    <span class="nx">contentView</span><span class="o">:</span> <span class="nx">SC</span><span class="p">.</span><span class="nx">View</span><span class="p">.</span><span class="nx">extend</span><span class="p">({</span></pre></div>             </td>           </tr>                               <tr id="section-7">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-7">&#182;</a>               </div>               <p>This configures the location and size of our view's drawing layer 
+within its surface.  Here, we're telling Blossom we want a view that 
+is 500px by 500px, and offset zero pixels from the center of its
+parent (in this case, the surface is its parent).</p>             </td>             <td class="code">               <div class="highlight"><pre>      <span class="nx">layout</span><span class="o">:</span> <span class="p">{</span> <span class="nx">width</span><span class="o">:</span> <span class="mi">500</span><span class="p">,</span> <span class="nx">height</span><span class="o">:</span> <span class="mi">500</span><span class="p">,</span> <span class="nx">centerX</span><span class="o">:</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">centerY</span><span class="o">:</span> <span class="mi">0</span> <span class="p">},</span></pre></div>             </td>           </tr>                               <tr id="section-8">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-8">&#182;</a>               </div>               <p>These methods are automatically be invoked by Blossom when the mouse 
+moves over the view, leaves the view, or is pressed.</p>
 
-<body>
-  <a href="https://github.com/fohr/blossom-testproject"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" /></a>
+<p>Note: since Blossom is still pre-beta, we'll cheat and manipulate 
+the <code>document</code> object directly to show a cursor.  In a future 
+release of Blossom, this will be replace by a cross-platform 
+function that works outside the browser.</p>             </td>             <td class="code">               <div class="highlight"><pre>      <span class="nx">mouseDown</span><span class="o">:</span>    <span class="kd">function</span><span class="p">(</span><span class="nx">evt</span><span class="p">)</span> <span class="p">{</span> <span class="nx">alert</span><span class="p">(</span><span class="s2">&quot;You clicked the green view!&quot;</span><span class="p">);</span> <span class="p">},</span>
+      <span class="nx">mouseEntered</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">evt</span><span class="p">)</span> <span class="p">{</span> <span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">cursor</span> <span class="o">=</span> <span class="s1">&#39;pointer&#39;</span><span class="p">;</span> <span class="p">},</span>
+      <span class="nx">mouseExited</span><span class="o">:</span>  <span class="kd">function</span><span class="p">(</span><span class="nx">evt</span><span class="p">)</span> <span class="p">{</span> <span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">cursor</span> <span class="o">=</span> <span class="s1">&#39;default&#39;</span><span class="p">;</span> <span class="p">},</span></pre></div>             </td>           </tr>                               <tr id="section-9">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-9">&#182;</a>               </div>               <p>This method is called when our view's layer needs to be re-cached, 
+in the process of being renderered to the view surface. The 
+<code>context</code> parameter is a CanvasRenderingContext2D. See 
+http://www.w3.org/TR/2dcontext/ for information on the drawing
+functions that are available.  This API is compatible with all 
+platforms supported by Blossom, including the native runtimes.</p>             </td>             <td class="code">               <div class="highlight"><pre>      <span class="nx">render</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">context</span><span class="p">,</span> <span class="nx">layer</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">context</span><span class="p">.</span><span class="nx">fillStyle</span> <span class="o">=</span> <span class="s1">&#39;#859900&#39;</span><span class="p">;</span> <span class="c1">// green</span>
+        <span class="nx">context</span><span class="p">.</span><span class="nx">fillRect</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="nx">context</span><span class="p">.</span><span class="nx">width</span><span class="p">,</span> <span class="nx">context</span><span class="p">.</span><span class="nx">height</span><span class="p">);</span>
+      <span class="p">}</span>
+    <span class="p">})</span>
+  <span class="p">});</span></pre></div>             </td>           </tr>                               <tr id="section-10">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-10">&#182;</a>               </div>               <p>Tell <code>SC.app</code> that we want our <code>ui</code> surface to becomes the app's user 
+interface ('ui').  Each app has only one active <code>ui</code> surface, though you 
+can change the global <code>ui</code> at any time.</p>
 
-  <div id="container">
+<p>You can also add arbitary surfaces to the application using 
+<code>SC.app.addSurface(...)</code>, but this is for a more advanced tutorial.</p>             </td>             <td class="code">               <div class="highlight"><pre>  <span class="nx">SC</span><span class="p">.</span><span class="nx">app</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s1">&#39;ui&#39;</span><span class="p">,</span> <span class="nx">ui</span><span class="p">);</span>
+<span class="p">}</span>
 
-    <div class="download">
-      <a href="https://github.com/fohr/blossom-testproject/zipball/master">
-        <img border="0" width="90" src="https://github.com/images/modules/download/zip.png"></a>
-      <a href="https://github.com/fohr/blossom-testproject/tarball/master">
-        <img border="0" width="90" src="https://github.com/images/modules/download/tar.png"></a>
-    </div>
-
-    <h1><a href="https://github.com/fohr/blossom-testproject">blossom-testproject</a>
-      <span class="small">by <a href="https://github.com/fohr">fohr</a></span></h1>
-
-    <div class="description">
-      Shows how to use Blossom in your own project.
-    </div>
-
-    
-
-    
-
-    
-
-    
-
-    
-      <h2>Authors</h2>
-      <p>Erich Ocean (erich.ocean@me.com)<br/>      </p>
-    
-
-    
-
-    <h2>Download</h2>
-    <p>
-      You can download this project in either
-      <a href="https://github.com/fohr/blossom-testproject/zipball/master">zip</a> or
-      <a href="https://github.com/fohr/blossom-testproject/tarball/master">tar formats.
-    </p>
-    <p>You can also clone the project with <a href="http://git-scm.com">Git</a>
-      by running:
-      <pre>$ git clone git://github.com/fohr/blossom-testproject</pre>
-    </p>
-
-    <div class="footer">
-      get the source code on GitHub : <a href="https://github.com/fohr/blossom-testproject">fohr/blossom-testproject</a>
-    </div>
-
-  </div>
-
-</body>
-</html>
+</pre></div>             </td>           </tr>                </tbody>     </table>   </div> </body> </html> 
