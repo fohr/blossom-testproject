@@ -2,7 +2,7 @@ This project shows how to start using Blossom with a new project.
 
 1. Clone this repository.
 2. Install Node.js ([http://nodejs.org](http://nodejs.org)). You'll want version `0.6.x` (where 'x' is any number).
-3. From within the `blossom-testproject` directory, do `npm install blossom`.
+3. From within the `blossom-testproject` directory, do `npm install`.
 
 With those three steps done, from within the `blossom-testproject` directory, 
 do: `node projectfile.js`.
