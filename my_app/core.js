@@ -76,5 +76,5 @@ function main() {
   //
   // You can also add arbitary surfaces to the application using 
   // `SC.app.addSurface(...)`, but this is for a more advanced tutorial.
-  SC.app.set('ui', ui);
+  SC.app.set('ui', myApp.ui);
 }
