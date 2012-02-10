@@ -12,6 +12,6 @@
     "node":       ">=0.6.0"
   },
   "dependencies": {
-    "blossom" :       "0.5.1"
+    "blossom" :       "0.5.2"
   }
 }
