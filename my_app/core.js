@@ -31,16 +31,16 @@ MyApp.ui = SC.View.create();
 
 MyApp.widget = SC.Widget.create({
 
-  // This configures the location and size of our view's drawing layer 
-  // within its surface.  Here, we're telling Blossom we want a view that 
-  // is 500px by 500px, and offset zero pixels from the center of its
-  // parent (in this case, the surface is its parent).
+  // This configures the location and size of our widget's drawing layer 
+  // within its View surface.  Here, we're telling Blossom we want a widget 
+  // that is 500px by 500px, and offset zero pixels from the center of its
+  // parent (in this case, the View surface is its parent).
   layout: { width: 500, height: 500, centerX: 0, centerY: 0 },
 
   // These methods are automatically be invoked by Blossom when the mouse 
-  // moves over the view, leaves the view, or is pressed.
+  // moves over the widget, leaves the widget, or is pressed.
   //
-  // Note: since Blossom is still pre-beta, we'll cheat and manipulate 
+  // Note: since Blossom is still pre-release, we'll cheat and manipulate 
   // the `document` object directly to show a cursor.  In a future 
   // release of Blossom, this will be replace by a cross-platform 
   // function that works outside the browser.
@@ -48,12 +48,12 @@ MyApp.widget = SC.Widget.create({
   mouseEntered: function(evt) { document.body.style.cursor = 'pointer'; },
   mouseExited:  function(evt) { document.body.style.cursor = 'default'; },
 
-  // This method is called when our view's layer needs to be re-cached, 
-  // in the process of being renderered to the view surface. The 
-  // `context` parameter is a CanvasRenderingContext2D. See 
-  // http://www.w3.org/TR/2dcontext/ for information on the drawing
-  // functions that are available.  This API is compatible with all 
-  // platforms supported by Blossom, including the native runtimes.
+  // This method is called when the layer needs to be re-cached, in the 
+  // process of being renderered to the View surface. The `context` parameter 
+  // is a CanvasRenderingContext2D. See http://www.w3.org/TR/2dcontext/ for 
+  // information on the drawing functions that are available.  This API is 
+  // compatible with all platforms supported by Blossom, including the native 
+  // runtimes.
   render: function(ctx) {
     ctx.fillStyle = '#859900'; // green
     ctx.fillRect(0, 0, ctx.width, ctx.height);
@@ -65,8 +65,8 @@ function main() {
   var ui = MyApp.ui,
       widget = MyApp.widget;
 
-  // Add the widget to our view's layers.  (Widgets are layers with event 
-  // handling behavior.)
+  // Add the widget to our view's layers.  (Widgets are SC.Layer subclasses 
+  // with event handling behavior.)
   ui.get('layers').pushObject(widget);
 
   // Tell `SC.app` that we want our `ui` surface to becomes the app's user 
